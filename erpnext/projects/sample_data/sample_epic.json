@@ -1,0 +1,17 @@
+{
+ "doctype": "Epic",
+ "epic_name": "User Authentication System",
+ "project": "E-Commerce Platform Development",
+ "status": "In Progress",
+ "priority": "High",
+ "start_date": "2025-01-01",
+ "end_date": "2025-02-28",
+ "story_points": 21,
+ "description": "Implement comprehensive user authentication system including registration, login, password reset, and social media integration",
+ "acceptance_criteria": "1. Users can register with email/password\n2. Users can login with email/password\n3. Users can reset password via email\n4. Users can login with Google/Facebook\n5. JWT token-based authentication\n6. Password strength validation\n7. Rate limiting for login attempts",
+ "assigned_to": "john.doe@demo.com",
+ "epic_owner": "jane.smith@demo.com",
+ "business_value": "High",
+ "technical_risk": "Medium",
+ "notes": "This epic is critical for the platform's security and user experience"
+} 

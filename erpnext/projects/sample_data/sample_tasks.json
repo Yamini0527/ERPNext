@@ -1,0 +1,134 @@
+[
+ {
+  "doctype": "Task",
+  "subject": "Design User Registration API",
+  "project": "E-Commerce Platform Development",
+  "type": "Feature",
+  "status": "Completed",
+  "priority": "High",
+  "parent_task": "",
+  "exp_start_date": "2025-01-01 09:00:00",
+  "exp_end_date": "2025-01-03 17:00:00",
+  "expected_time": 16,
+  "progress": 100,
+  "description": "Design and implement the user registration API endpoint with proper validation and error handling",
+  "reviewer": "jane.smith@demo.com",
+  "code_reviewer": "mike.johnson@demo.com",
+  "task_category": "Feature",
+  "story_points": 5,
+  "sprint": "Sprint 1 - Authentication Foundation",
+  "epic": "User Authentication System",
+  "git_branch": "feature/user-registration-api",
+  "pull_request_url": "https://github.com/demo/ecommerce/pull/123",
+  "completed_by": "john.doe@demo.com",
+  "completed_on": "2025-01-03"
+ },
+ {
+  "doctype": "Task",
+  "subject": "Implement User Registration Frontend",
+  "project": "E-Commerce Platform Development",
+  "type": "Feature",
+  "status": "Working",
+  "priority": "High",
+  "parent_task": "",
+  "exp_start_date": "2025-01-04 09:00:00",
+  "exp_end_date": "2025-01-07 17:00:00",
+  "expected_time": 20,
+  "progress": 60,
+  "description": "Create React components for user registration form with client-side validation and error handling",
+  "reviewer": "jane.smith@demo.com",
+  "code_reviewer": "mike.johnson@demo.com",
+  "task_category": "Feature",
+  "story_points": 8,
+  "sprint": "Sprint 1 - Authentication Foundation",
+  "epic": "User Authentication System",
+  "git_branch": "feature/registration-frontend",
+  "pull_request_url": "https://github.com/demo/ecommerce/pull/124",
+  "depends_on": [
+   {
+    "task": "TASK-2025-00001",
+    "subject": "Design User Registration API"
+   }
+  ]
+ },
+ {
+  "doctype": "Task",
+  "subject": "Design User Login API",
+  "project": "E-Commerce Platform Development",
+  "type": "Feature",
+  "status": "Pending Review",
+  "priority": "High",
+  "parent_task": "",
+  "exp_start_date": "2025-01-08 09:00:00",
+  "exp_end_date": "2025-01-10 17:00:00",
+  "expected_time": 12,
+  "progress": 100,
+  "description": "Design and implement the user login API endpoint with JWT token generation",
+  "reviewer": "jane.smith@demo.com",
+  "code_reviewer": "mike.johnson@demo.com",
+  "task_category": "Feature",
+  "story_points": 3,
+  "sprint": "Sprint 1 - Authentication Foundation",
+  "epic": "User Authentication System",
+  "git_branch": "feature/user-login-api",
+  "pull_request_url": "https://github.com/demo/ecommerce/pull/125"
+ },
+ {
+  "doctype": "Task",
+  "subject": "Implement User Login Frontend",
+  "project": "E-Commerce Platform Development",
+  "type": "Feature",
+  "status": "Open",
+  "priority": "High",
+  "parent_task": "",
+  "exp_start_date": "2025-01-11 09:00:00",
+  "exp_end_date": "2025-01-14 17:00:00",
+  "expected_time": 16,
+  "progress": 0,
+  "description": "Create React components for user login form with proper error handling and token storage",
+  "reviewer": "jane.smith@demo.com",
+  "code_reviewer": "mike.johnson@demo.com",
+  "task_category": "Feature",
+  "story_points": 5,
+  "sprint": "Sprint 1 - Authentication Foundation",
+  "epic": "User Authentication System",
+  "git_branch": "feature/login-frontend",
+  "depends_on": [
+   {
+    "task": "TASK-2025-00003",
+    "subject": "Design User Login API"
+   }
+  ]
+ },
+ {
+  "doctype": "Task",
+  "subject": "Write Unit Tests for Authentication APIs",
+  "project": "E-Commerce Platform Development",
+  "type": "Testing",
+  "status": "Open",
+  "priority": "Medium",
+  "parent_task": "",
+  "exp_start_date": "2025-01-15 09:00:00",
+  "exp_end_date": "2025-01-17 17:00:00",
+  "expected_time": 12,
+  "progress": 0,
+  "description": "Write comprehensive unit tests for registration and login APIs with proper test coverage",
+  "reviewer": "jane.smith@demo.com",
+  "code_reviewer": "mike.johnson@demo.com",
+  "task_category": "Testing",
+  "story_points": 3,
+  "sprint": "Sprint 1 - Authentication Foundation",
+  "epic": "User Authentication System",
+  "git_branch": "feature/auth-tests",
+  "depends_on": [
+   {
+    "task": "TASK-2025-00001",
+    "subject": "Design User Registration API"
+   },
+   {
+    "task": "TASK-2025-00003",
+    "subject": "Design User Login API"
+   }
+  ]
+ }
+] 

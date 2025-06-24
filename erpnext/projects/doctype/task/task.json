@@ -22,6 +22,7 @@
   "completed_by",
   "completed_on",
   "reviewer",
+  "code_reviewer",
   "sb_timeline",
   "exp_start_date",
   "expected_time",
@@ -54,7 +55,15 @@
   "lft",
   "rgt",
   "old_parent",
-  "template_task"
+  "template_task",
+  "sb_development",
+  "task_category",
+  "story_points",
+  "column_break_25",
+  "sprint",
+  "epic",
+  "git_branch",
+  "pull_request_url"
  ],
  "fields": [
   {
@@ -119,7 +128,7 @@
    "no_copy": 1,
    "oldfieldname": "status",
    "oldfieldtype": "Select",
-   "options": "Open\nWorking\nPending Review\nOverdue\nTemplate\nCompleted\nCancelled"
+   "options": "Open\nWorking\nPending Review\nCode Review\nTesting\nOverdue\nTemplate\nCompleted\nCancelled"
   },
   {
    "fieldname": "priority",
@@ -396,11 +405,63 @@
   },
   {
    "allow_in_quick_entry": 1,
-   "fetch_from": "completed_by.first_name",
    "fieldname": "reviewer",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Reviewer",
-   "reqd": 1
+   "options": "User"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "code_reviewer",
+   "fieldtype": "Link",
+   "label": "Code Reviewer",
+   "options": "User"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sb_development",
+   "fieldtype": "Section Break",
+   "label": "Development Details"
+  },
+  {
+   "fieldname": "task_category",
+   "fieldtype": "Select",
+   "label": "Task Category",
+   "options": "Feature\nBug\nEnhancement\nDocumentation\nTesting\nRefactoring"
+  },
+  {
+   "fieldname": "story_points",
+   "fieldtype": "Int",
+   "label": "Story Points",
+   "description": "Agile story points for effort estimation"
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sprint",
+   "fieldtype": "Link",
+   "label": "Sprint",
+   "options": "Sprint"
+  },
+  {
+   "fieldname": "epic",
+   "fieldtype": "Link",
+   "label": "Epic",
+   "options": "Epic"
+  },
+  {
+   "fieldname": "git_branch",
+   "fieldtype": "Data",
+   "label": "Git Branch",
+   "description": "Branch name for this task"
+  },
+  {
+   "fieldname": "pull_request_url",
+   "fieldtype": "Data",
+   "label": "Pull Request URL",
+   "description": "Link to the pull request"
   }
  ],
  "icon": "fa fa-check",
