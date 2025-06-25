@@ -22,6 +22,7 @@
   "completed_by",
   "completed_on",
   "reviewer",
+  "task_reviewer",
   "sb_timeline",
   "exp_start_date",
   "expected_time",
@@ -145,6 +146,18 @@
    "label": "Parent Task",
    "options": "Task",
    "search_index": 1
+  },
+  {
+   "fieldname": "reviewer",
+   "fieldtype": "Data",
+   "label": "Reviewer"
+  },
+  {
+   "fieldname": "task_reviewer",
+   "fieldtype": "Link",
+   "label": "Task Reviewer",
+   "options": "User",
+   "description": "Person assigned to review this task"
   },
   {
    "collapsible": 1,
@@ -393,14 +406,6 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Template Task"
-  },
-  {
-   "allow_in_quick_entry": 1,
-   "fetch_from": "completed_by.first_name",
-   "fieldname": "reviewer",
-   "fieldtype": "Data",
-   "label": "Reviewer",
-   "reqd": 1
   }
  ],
  "icon": "fa fa-check",

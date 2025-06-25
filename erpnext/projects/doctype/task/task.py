@@ -55,9 +55,10 @@ class Task(NestedSet):
 		project: DF.Link | None
 		review_date: DF.Date | None
 		reviewer: DF.Data
+		task_reviewer: DF.Link | None
 		rgt: DF.Int
 		start: DF.Int
-		status: DF.Literal["Open", "Working", "Pending Review", "Overdue", "Template", "Completed", "Cancelled"]
+		status: DF.Data
 		subject: DF.Data
 		task_weight: DF.Float
 		template_task: DF.Data | None
@@ -78,6 +79,7 @@ class Task(NestedSet):
 		self.validate_dates()
 		self.validate_progress()
 		self.validate_status()
+		self.validate_task_reviewer()
 		self.update_depends_on()
 		self.validate_dependencies_for_template_task()
 		self.validate_completed_on()
@@ -140,6 +142,25 @@ class Task(NestedSet):
 					)
 
 			close_all_assignments(self.doctype, self.name)
+		
+		# Check if task can be started based on dependencies
+		if self.status == "Working" and self.get_db_value("status") == "Open":
+			self.validate_dependencies_before_start()
+
+	def validate_dependencies_before_start(self):
+		"""Validate that all dependent tasks are completed before starting this task"""
+		blocked_tasks = []
+		for d in self.depends_on:
+			dependent_status = frappe.db.get_value("Task", d.task, "status")
+			if dependent_status not in ("Completed", "Cancelled"):
+				blocked_tasks.append(d.task)
+		
+		if blocked_tasks:
+			frappe.throw(
+				_(
+					"Cannot start task {0} as the following dependent tasks are not completed: {1}"
+				).format(frappe.bold(self.name), frappe.bold(", ".join(blocked_tasks)))
+			)
 
 	def validate_progress(self):
 		if flt(self.progress or 0) > 100:
@@ -169,6 +190,31 @@ class Task(NestedSet):
 	def validate_completed_on(self):
 		if self.completed_on and getdate(self.completed_on) > getdate():
 			frappe.throw(_("Completed On cannot be greater than Today"))
+
+	def validate_task_reviewer(self):
+		if self.task_reviewer:
+			if not frappe.db.exists("User", self.task_reviewer):
+				frappe.throw(_("Task Reviewer {0} is not a valid user").format(self.task_reviewer))
+
+	def get_dependency_status(self):
+		"""Get the status of all dependent tasks"""
+		dependency_status = []
+		for d in self.depends_on:
+			status = frappe.db.get_value("Task", d.task, "status")
+			dependency_status.append({
+				"task": d.task,
+				"status": status,
+				"is_completed": status in ("Completed", "Cancelled")
+			})
+		return dependency_status
+
+	def is_blocked_by_dependencies(self):
+		"""Check if task is blocked by incomplete dependencies"""
+		for d in self.depends_on:
+			status = frappe.db.get_value("Task", d.task, "status")
+			if status not in ("Completed", "Cancelled"):
+				return True
+		return False
 
 	def update_depends_on(self):
 		depends_on_tasks = ""

@@ -34,6 +34,15 @@ frappe.ui.form.on("Task", {
 				filters: filters,
 			};
 		});
+
+		// Set query for task reviewer field
+		frm.set_query("task_reviewer", function () {
+			return {
+				filters: {
+					enabled: 1
+				}
+			};
+		});
 	},
 
 	is_group: function (frm) {
