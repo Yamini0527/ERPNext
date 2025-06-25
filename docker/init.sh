@@ -34,6 +34,7 @@ bench new-site erpnext.localhost \
 
 bench --site erpnext.localhost install-app erpnext
 bench --site erpnext.localhost set-config developer_mode 1
+bench --site erpnext.localhost migrate   #Load fixtures automatically
 bench --site erpnext.localhost clear-cache
 bench use erpnext.localhost
 

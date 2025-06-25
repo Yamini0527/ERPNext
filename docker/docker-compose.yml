@@ -24,6 +24,7 @@ services:
     working_dir: /home/frappe
     volumes:
       - .:/workspace
+      - ../Nueroid/erpnext:/home/frappe/frappe-bench/apps/erpnext
     ports:
       - 8000:8000
       - 9000:9000
