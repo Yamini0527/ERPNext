@@ -665,4 +665,21 @@ export_python_type_annotations = True
 
 fields_for_group_similar_items = ["qty", "amount"]
 
+fixtures = [
+    "Custom Field",
+    "Property Setter",
+    "Print Format",
+    "Report",
+    "Role",
+    "Role Profile",
+    "DocType",
+    "Workspace",
+    "Notification",
+    "Letter Head",
+    "Translation",
+    "Email Template",
+    "Workflow",
+    "Workflow State",
+    "Workflow Action Master",
+]
 

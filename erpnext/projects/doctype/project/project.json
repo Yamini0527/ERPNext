@@ -13,6 +13,7 @@
   "status",
   "project_type",
   "is_active",
+  "project_version",
   "percent_complete_method",
   "percent_complete",
   "column_break_5",
@@ -447,6 +448,11 @@
    "print_hide": 1,
    "reqd": 1,
    "set_only_once": 1
+  },
+  {
+   "fieldname": "project_version",
+   "fieldtype": "Data",
+   "label": "Project version"
   }
  ],
  "icon": "fa fa-puzzle-piece",
@@ -454,7 +460,7 @@
  "index_web_pages_for_search": 1,
  "links": [],
  "max_attachments": 4,
- "modified": "2024-04-24 10:56:16.001032",
+ "modified": "2025-06-26 16:39:43.797807",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Project",
@@ -501,6 +507,7 @@
   }
  ],
  "quick_entry": 1,
+ "row_format": "Dynamic",
  "search_fields": "project_name,customer, status, priority, is_active",
  "show_name_in_global_search": 1,
  "sort_field": "creation",
