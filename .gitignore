@@ -19,3 +19,11 @@ node_modules/
 .backportrc.json
 # Aider AI Chat
 .aider*
+# Ignore heavy backup blobs
+backups/**/*.gz
+backups/**/*.tar
+backups/**/*.zip
+
+# Optional: ignore full folder dumps
+backups/**/full_backup_*/
+
