@@ -6,20 +6,21 @@ import gzip
 from pathlib import Path
 
 CONFIG = {
-    "DB_HOST": "mariadb",                 # from docker-compose
+    "DB_HOST": "mariadb",
     "DB_PORT": 3306,
-    "DB_USER": "_7ee1b10d24ab9a87",                    # default ERPNext DB user
-    "DB_PASSWORD": "FrHp1CnGMe9DUk1d",                 # from docker-compose.yml
-    "DB_NAME": "_7ee1b10d24ab9a87",       # from site_config.json
+    "DB_USER": "_7ee1b10d24ab9a87",
+    "DB_PASSWORD": "FrHp1CnGMe9DUk1d",
+    "DB_NAME": "_7ee1b10d24ab9a87",
 
-    "FRAPPE_BENCH_PATH": "/frappe-bench",                         # ✅ if needed for rollback/git
+    "FRAPPE_BENCH_PATH": "/home/frappe/frappe-bench",
     "SITE_NAME": "erpnext.localhost",
 
-    "BACKUP_DIR": "/frappe-bench/apps/erpnext/backups",           # ✅ your chosen path
-    "GIT_REPO_PATH": "/frappe-bench/apps/erpnext/backups/git",    # ✅ Git-tracked folder
+    "BACKUP_DIR": "/home/frappe/frappe-bench/apps/erpnext/backups",
+    "GIT_REPO_PATH": "/home/frappe/frappe-bench/apps/erpnext/backups/git",
     "GIT_ENABLED": True,
     "COMPRESS_BACKUPS": True
 }
+
 
 def create_backup_dir():
     try:
