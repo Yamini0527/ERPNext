@@ -12,11 +12,11 @@ CONFIG = {
     "DB_PASSWORD": "FrHp1CnGMe9DUk1d",                 # from docker-compose.yml
     "DB_NAME": "_7ee1b10d24ab9a87",       # from site_config.json
 
-    "FRAPPE_BENCH_PATH": "/workspace",   # since it's mounted in container
+    "FRAPPE_BENCH_PATH": "/frappe-bench",                         # ✅ if needed for rollback/git
     "SITE_NAME": "erpnext.localhost",
 
-    "BACKUP_DIR": "/workspace/backups",
-    "GIT_REPO_PATH": "/workspace/backups/git",
+    "BACKUP_DIR": "/frappe-bench/apps/erpnext/backups",           # ✅ your chosen path
+    "GIT_REPO_PATH": "/frappe-bench/apps/erpnext/backups/git",    # ✅ Git-tracked folder
     "GIT_ENABLED": True,
     "COMPRESS_BACKUPS": True
 }
