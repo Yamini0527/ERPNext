@@ -12,12 +12,12 @@ CONFIG = {
     "DB_PASSWORD": "FrHp1CnGMe9DUk1d",
     "DB_NAME": "_7ee1b10d24ab9a87",
 
-    "FRAPPE_BENCH_PATH": "/home/frappe/frappe-bench",
+    "FRAPPE_BENCH_PATH": "/home/frappe/frappe-bench/apps/erpnext",
     "SITE_NAME": "erpnext.localhost",
 
     "BACKUP_DIR": "/home/frappe/frappe-bench/apps/erpnext/backups",
     "GIT_REPO_PATH": "/home/frappe/frappe-bench/apps/erpnext/backups/git",
-    "GIT_ENABLED": True,
+    "GIT_ENABLED": False,  # set to False to prevent auto-commit
     "COMPRESS_BACKUPS": True
 }
 
@@ -26,16 +26,9 @@ def create_backup_dir():
     try:
         Path(CONFIG["BACKUP_DIR"]).mkdir(parents=True, exist_ok=True)
         Path(CONFIG["GIT_REPO_PATH"]).mkdir(parents=True, exist_ok=True)
-        if CONFIG["GIT_ENABLED"]:
-            os.chdir(CONFIG["GIT_REPO_PATH"])
-            if not Path(".git").exists():
-                subprocess.run(["git", "init"], check=True)
-                subprocess.run(["git", "config", "user.name", "ERPNext Backup"], check=True)
-                subprocess.run(["git", "config", "user.email", "backup@erpnext.com"], check=True)
-                with open(".gitignore", "w") as f:
-                    f.write("*.gz\n*.zip\n*.tar\n")
     except Exception as e:
         print(f"❌ Error creating backup or git directories: {e}")
+
 
 def run_mysqldump(backup_dir):
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -70,22 +63,25 @@ def run_mysqldump(backup_dir):
         print(f"❌ Error during mysqldump: {e}")
         return None
 
+
 def git_commit(backup_path):
     if not CONFIG["GIT_ENABLED"] or not backup_path:
+        print("🔕 Git auto-commit disabled. You can commit manually.")
         return
     try:
-        dest = os.path.join(CONFIG["GIT_REPO_PATH"], os.path.basename(backup_path).replace(".gz", ".sql"))
-        print(f"📁 Copying to Git folder: {dest}")
-        subprocess.run(["gzip", "-d", backup_path], check=True)  # decompress before git commit
-        shutil.move(backup_path.replace(".gz", ""), dest)
+        subprocess.run(["gzip", "-d", backup_path], check=True)
+        sql_path = backup_path.replace(".gz", "")
+        dest = os.path.join(CONFIG["GIT_REPO_PATH"], Path(sql_path).name)
+        shutil.move(sql_path, dest)
 
-        os.chdir(CONFIG["GIT_REPO_PATH"])
-        subprocess.run(["git", "add", "."], check=True)
+        os.chdir(CONFIG["FRAPPE_BENCH_PATH"])
+        subprocess.run(["git", "add", dest], check=True)
         commit_msg = f"Backup {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
         subprocess.run(["git", "commit", "-m", commit_msg], check=True)
         print("🎉 Git commit complete.")
     except Exception as e:
         print(f"❌ Git commit failed: {e}")
+
 
 def main():
     print("🛠 Step 1: Creating backup directories...")
@@ -100,10 +96,11 @@ def main():
     sql_file = run_mysqldump(backup_folder)
 
     if sql_file:
-        print("🔁 Step 4: Committing SQL to Git...")
+        print("🔁 Step 4: Preparing Git commit (manual)...")
         git_commit(sql_file)
 
     print("✅ Step 5: Backup process completed!")
+
 
 if __name__ == "__main__":
     main()
