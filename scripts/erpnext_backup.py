@@ -8,9 +8,9 @@ from pathlib import Path
 CONFIG = {
     "DB_HOST": "mariadb",
     "DB_PORT": 3306,
-    "DB_USER": "_7ee1b10d24ab9a87",
-    "DB_PASSWORD": "FrHp1CnGMe9DUk1d",
-    "DB_NAME": "_7ee1b10d24ab9a87",
+    "DB_USER": "_4341c3e98369b05e",
+    "DB_PASSWORD": "F2OmTSIyLswAKhn4",
+    "DB_NAME": "_4341c3e98369b05e",
 
     "FRAPPE_BENCH_PATH": "/home/frappe/frappe-bench/apps/erpnext",
     "SITE_NAME": "erpnext.localhost",
