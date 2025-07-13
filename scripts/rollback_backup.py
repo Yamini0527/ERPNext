@@ -15,9 +15,9 @@ CONFIG = {
     "DB_NAME": "_7ee1b10d24ab9a87",       # from site_config.json
 }
 
-def run_cmd(cmd):
+def run_cmd(cmd, **kwargs):
     print(f"🔧 Running: {' '.join(cmd)}")
-    subprocess.run(cmd, check=True)
+    subprocess.run(cmd, check=True, **kwargs)
 
 def restore_sql(sql_path):
     print(f"📦 Restoring from: {sql_path}")
